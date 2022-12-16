@@ -10,21 +10,15 @@ When declared, the **custom attribute** will look like this:
 
 Once one or more elements in a document have such **custom attributes**, you may query the elements via JavaScript.
 
- 1. This will reveal which elements on the page have `EventListeners` attached:
+**e.g.**
 
-    `document.querySelectorAll('[data-eventlisteners]')`
+ 1. `document.querySelectorAll('[data-eventlisteners]')` will reveal which elements on the page have `EventListeners` attached
 
- 2. This will reveal which elements on the page have more than one `EventListener` attached:
+ 2. `document.querySelectorAll('[data-eventlisteners*=","]')` will reveal which elements on the page have more than one `EventListener` attached
 
-    `document.querySelectorAll('[data-eventlisteners~=","]')`
+ 3. `document.querySelectorAll('[data-eventlisteners*="mouseover:"]')` will reveal which elements on the page have a `mouseover` `EventListener` attached
 
- 3. This will reveal which elements on the page have a `mouseover EventListener` attached:
-
-    `document.querySelectorAll('[data-eventlisteners~="mouseover:"]')`
-
- 4. This will reveal which elements on the page have both a `click EventListener` *and* a `mouseout EventListener` attached:
-
-    `document.querySelectorAll('[data-eventlisteners~="click:"][data-eventlisteners~="mouseout:"]')`
+ 4. `document.querySelectorAll('[data-eventlisteners*="click:"][data-eventlisteners*="mouseout:"]')` will reveal which elements on the page have both a `click` *and* a `mouseout` `EventListener` attached
 
 etc.
 
