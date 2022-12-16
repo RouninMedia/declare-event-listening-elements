@@ -18,15 +18,15 @@ Once one or more elements in a document have such **custom attributes**, you may
 
     `document.querySelectorAll('[data-eventlisteners]')`
 
- 2. This will reveal which elements on the page have more than one `EventListeners` attached:
+ 2. This will reveal which elements on the page have more than one `EventListener` attached:
 
     `document.querySelectorAll('[data-eventlisteners~=","]')`
 
- 3. This will reveal which elements on the page have a `mouseover` `EventListener` attached:
+ 3. This will reveal which elements on the page have a `mouseover EventListener` attached:
 
     `document.querySelectorAll('[data-eventlisteners~="mouseover:"]')`
 
- 4. This will reveal which elements on the page have both a `click` *and* a `mouseout` `EventListener` attached:
+ 4. This will reveal which elements on the page have both a `click EventListener` *and* a `mouseout EventListener` attached:
 
     `document.querySelectorAll('[data-eventlisteners~="click:"][data-eventlisteners~="mouseout:"]')`
 
