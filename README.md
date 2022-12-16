@@ -28,9 +28,41 @@ Once one or more elements in a document have such **custom attributes**, you may
 
 etc.
 
-_________
+_______
 
 ## Short version:
+
+```js
+const declareEventListeners = () => {
+
+  EventTarget.prototype._addEventListener = EventTarget.prototype.addEventListener;
+
+  EventTarget.prototype.addEventListener = function(eventType, eventFunction, eventOptions) {
+  
+    // REINSTATE ORIGINAL FUNCTIONALITY FOR addEventListener() METHOD
+    let _eventOptions = (eventOptions === undefined) ? false : eventOptions;
+    this._addEventListener(eventType, eventFunction, _eventOptions);
+   
+    // THEN, IF EVENTTARGET IS NOT WINDOW OR DOCUMENT
+    if (this.nodeType === 1) {
+      let eventAction = eventFunction.name || 'anonymousFunction';
+      let eventListenerLabel = `${eventType}:${eventAction}`;
+      let eventListenerLabelsArray = (this.dataset.eventlisteners) ? JSON.parse(this.dataset.eventlisteners.replaceAll( "'", '"')) : [];
+      eventListenerLabelsArray.push(eventListenerLabel);
+      let eventListenerLabelsString = JSON.stringify(eventListenerLabelsArray).replaceAll('"', "'");
+      this.dataset.eventlisteners = eventListenerLabelsString;
+    }
+  }
+};
+```
+
+_______
+
+## Long version (as used in Ashiva):
+
+_________
+
+## Working Example (using Short Version):
 
 ```js
 const declareEventListeners = () => {
@@ -108,12 +140,6 @@ logMarkup();
   <div class="div2">mouseover<br />mouseout</div>
 </section>
 ```
-
-_____
-
-## Long version (as used in Ashiva):
-
-
 _______
 
 **N.B.** The script above has been modified quite a lot but was originally inspired by:
