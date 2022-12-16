@@ -12,7 +12,7 @@ When declared, the **custom attribute** will look like this:
 
     data-eventlisteners="['mouseover:showButton','mouseout:fadeButton','click:animateButton']"
 
-Once one or more elements have such **custom attributes**, you may query the elements via JavaScript.
+Once one or more elements in a document have such **custom attributes**, you may query the elements via JavaScript.
 
  1. This will reveal which elements on the page have `EventListeners` attached:
 
