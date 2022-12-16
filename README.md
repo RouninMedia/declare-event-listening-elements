@@ -60,6 +60,6 @@ _______
 
 _______
 
-**N.B.** The script above has been modified quite a lot but was originally inspired by:
+**N.B.** I've modified the script above quite a lot but it was originally inspired by:
 
  - [Javascript - Listing active event listeners on a Web page | SQLPac | (2020-04-10)](https://www.sqlpac.com/en/documents/javascript-listing-active-event-listeners.html)
