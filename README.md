@@ -58,11 +58,13 @@ _______
 ## Long version (as used in Ashiva):
 The **long version** will, instead of setting attributes like this:
 
-    data-eventlisteners="[«mouseover:minimiseMainMenu», «mouseover:minimiseLanguageSelector»]"
+    data-eventlisteners="[«parse:getInfo»]"
     
 set attributes like this:
 
-    data-eventlisteners="{«mouseover:minimiseMainMenu»: {«eventType»: «mouseover», «eventAction»: «minimiseMainMenu», «eventOptions»: false}, «mouseover:minimiseLanguageSelector»: {«eventType»: «mouseover», «eventAction»: «minimiseLanguageSelector», «eventOptions»: false}}"
+    data-eventlisteners="{«parse:getInfo»: {«eventType»: «parse», «eventAction»: «getInfo», «eventActionData»: {«info»: «id2»}}}"
+    
+    
 
 _______
 
