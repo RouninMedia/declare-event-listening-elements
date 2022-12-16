@@ -6,7 +6,7 @@ _______
  - https://www.sqlpac.com/en/documents/javascript-listing-active-event-listeners.html
 ________
 
-You can extend `EventTarget.addEventListener` so that *any* element to which you add an `EventListener` then declares that `EventListener` in an **HTML5 custom data-\* attribute** in its own markup.
+You can extend the native JavaScript `EventTarget.addEventListener()` method so that *any* element to which you add an `EventListener` then declares that `EventListener` in an **HTML5 custom data-\* attribute** in its own markup.
 
 When declared, the **custom attribute** will look like this:
 
