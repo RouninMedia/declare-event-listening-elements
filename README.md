@@ -31,6 +31,9 @@ etc.
 _______
 
 ## Short version:
+The **short version** will set attributes like this:
+
+    data-eventlisteners="['mouseover:showButton','mouseout:fadeButton','click:animateButton']"
 
 ```js
 const declareEventListeners = () => {
