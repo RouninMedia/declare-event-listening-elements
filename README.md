@@ -56,7 +56,13 @@ const declareEventListeners = () => {
 _______
 
 ## Long version (as used in Ashiva):
+The **long version** will, instead of setting attributes like this:
 
+    data-eventlisteners="[«mouseover:minimiseMainMenu», «mouseover:minimiseLanguageSelector»]"
+    
+set attributes like this:
+
+    data-eventlisteners="{«mouseover:minimiseMainMenu»: {«eventType»: «mouseover», «eventAction»: «minimiseMainMenu», «eventOptions»: false}, «mouseover:minimiseLanguageSelector»: {«eventType»: «mouseover», «eventAction»: «minimiseLanguageSelector», «eventOptions»: false}}"
 
 _______
 
