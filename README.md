@@ -56,13 +56,88 @@ const declareEventListeners = () => {
 _______
 
 ## Long version (as used in Ashiva):
-The **long version** will, instead of setting attributes like this:
+The **long version** uses **dON** notation and will, instead of setting attributes like this:
     
-    data-eventlisteners="[«click:revealItems», «parse:getInfo», «click:anonymousFunction», «mouseover:anonymousFunction», «mouseout:anonymousFunction»]"
+    data-eventlisteners="['click:revealItems','parse:getInfo','click:anonymousFunction','mouseover:anonymousFunction','mouseout:anonymousFunction']"
     
 provide more detailed information on the `data` and `EventListener Options` passed to each `EventListener`, including those with *anonymous Functions*, setting attributes like this:
     
     data-eventlisteners="{«click:revealItems»: {«options»: false}, «parse:getInfo»: {«data»: {«info»: «id2»}}, «anonymousFunctions»: [{«click»: {«options»: false}}, {«mouseover»: {}}, {«mouseout»: {«options»: {«once»: true}}}]}"
+    
+```js
+  //**********************************//
+ // DECLARE EVENT LISTENING ELEMENTS //
+//**********************************//
+
+const convertJSONtoDON = (JSON) => {
+  
+  let don = JSON;
+
+  don = don.replaceAll('{"', '{«');
+  don = don.replaceAll('["', '[«');
+  don = don.replaceAll(':"', ': «');
+  don = don.replaceAll(',"', ', «');
+  
+  don = don.replaceAll('"}', '»}');
+  don = don.replaceAll('"]', '»]');
+  don = don.replaceAll('":', '»:');
+  don = don.replaceAll('",', '»,');
+  
+  don = don.replaceAll(':{', ': {');
+  don = don.replaceAll(':[', ': [');
+  don = don.replaceAll(':true', ': true');
+  don = don.replaceAll(':false', ': false');
+  don = don.replaceAll(':null', ': null');
+  
+  don = don.replaceAll(',{', ', {');
+  don = don.replaceAll(',[', ', [');
+
+
+  return don;
+};
+
+EventTarget.prototype._addEventListener = EventTarget.prototype.addEventListener;
+
+EventTarget.prototype.addEventListener = function(eventType, eventFunction, eventOptions) {
+  
+  // REINSTATE ORIGINAL FUNCTIONALITY FOR addEventListener() METHOD
+  let _eventOptions = (eventOptions === undefined) ? false : eventOptions;
+  this._addEventListener(eventType, eventFunction, _eventOptions);
+   
+  // THEN, IF EVENTTARGET IS NOT WINDOW OR DOCUMENT
+  if (this.nodeType === 1) {
+    
+    let eventAction = eventFunction.name || 'anonymousFunction';
+
+    let eventListenerObject = {};
+
+    if (eventOptions !== undefined) {eventListenerObject['options'] = eventOptions;}
+
+    let eventListenerString = convertJSONtoDON(JSON.stringify(eventListenerObject));
+
+    let eventListenersObject = (this.dataset.eventlisteners) ? JSON.parse(this.dataset.eventlisteners.replace(/«|»/g, '"')) : {};
+    
+    if (eventAction === 'anonymousFunction') {
+
+      if (! eventListenersObject['anonymousFunctions']) {
+
+        eventListenersObject['anonymousFunctions'] = [];
+      }
+
+      eventListenersObject.anonymousFunctions.push({[eventType]: eventListenerObject});
+    }
+
+    else {
+
+      eventListenersObject[`${eventType}:${eventAction}`] = eventListenerObject;
+    }
+
+    let eventListenersString = convertJSONtoDON(JSON.stringify(eventListenersObject));
+    this.dataset.eventlisteners = eventListenersString;
+  }
+};
+
+```
     
 _______
 
