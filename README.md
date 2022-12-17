@@ -62,7 +62,7 @@ The **long version** will, instead of setting attributes like this:
     
 provide more detailed information on the `data` and `EventListener Options` passed to each `EventListener`, including those with *anonymous Functions*, setting attributes like this:
     
-    data-eventlisteners="{«click:revealItems»: {«options»: false}, «parse:getInfo»: {«eventActionData»: {«info»: «id2»}}, «anonymousFunctions»: [{«click»: {«options»: false}}, {«mouseover»: {}}, {«mouseout»: {«options»: {«once»: true}}}]}"
+    data-eventlisteners="{«click:revealItems»: {«options»: false}, «parse:getInfo»: {«data»: {«info»: «id2»}}, «anonymousFunctions»: [{«click»: {«options»: false}}, {«mouseover»: {}}, {«mouseout»: {«options»: {«once»: true}}}]}"
     
 _______
 
