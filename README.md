@@ -60,7 +60,7 @@ The **long version** uses **dON** notation and will, instead of setting attribut
     
     data-eventlisteners="['click:revealItems','parse:getInfo','click:anonymousFunction','mouseover:anonymousFunction','mouseout:anonymousFunction']"
     
-provide more detailed information on the `data` and `EventListener Options` passed to each `EventListener`, including those with *anonymous Functions*, setting attributes like this:
+provide *more detailed* information on the `data` and `EventListener Options` passed to each `EventListener`, including those with *anonymous Functions*, setting attributes like this:
     
     data-eventlisteners="{«click:revealItems»: {«options»: false}, «parse:getInfo»: {«data»: {«info»: «id2»}}, «anonymousFunctions»: [{«click»: {«options»: false}}, {«mouseover»: {}}, {«mouseout»: {«options»: {«once»: true}}}]}"
     
